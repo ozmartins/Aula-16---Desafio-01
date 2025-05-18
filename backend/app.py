@@ -8,7 +8,6 @@ from routes.estrategia_vacinacao import estrategia_vacinacao_bp
 from routes.pais import pais_bp
 from routes.raca import raca_bp
 from routes.etnia_indigena import etnia_indigena_bp
-from routes.fabricante import fabricante_bp
 from routes.grupo_atendimento import grupo_atendimento_bp
 from routes.local_aplicacao import local_aplicacao_bp
 from routes.municipio import municipio_bp
@@ -20,6 +19,7 @@ from routes.tipo_estabelecimento import tipo_estabelecimento_bp
 from routes.uf import uf_bp
 from routes.vacina import vacina_bp
 from routes.vacinacao import vacinacao_bp
+from routes.vacina_fabricante import vacina_fabricante_bp
 from routes.via_administracao import via_administracao_bp
 
 app = Flask(__name__)
@@ -29,7 +29,7 @@ app.register_blueprint(dose_vacina_bp, url_prefix='/dose-vacina')
 app.register_blueprint(estabelecimento_bp, url_prefix='/estabelecimento')
 app.register_blueprint(estrategia_vacinacao_bp, url_prefix='/estrategia-vacinacao')
 app.register_blueprint(etnia_indigena_bp, url_prefix='/etnia-indigena')
-app.register_blueprint(fabricante_bp, url_prefix='/fabricante')
+app.register_blueprint(vacina_fabricante_bp, url_prefix='/vacina-fabricante')
 app.register_blueprint(grupo_atendimento_bp, url_prefix='/grupo-atendimento')
 app.register_blueprint(local_aplicacao_bp, url_prefix='/local-aplicacao')
 app.register_blueprint(municipio_bp, url_prefix='/municipio')
