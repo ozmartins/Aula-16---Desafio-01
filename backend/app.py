@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from scripts.db_initializer import initialize_database
-from routes.categoria_vacinacao import categoria_vacinacao_bp
+from routes.categoria_vacinacao import categoria_atendimento_bp
 from routes.dose_vacina import dose_vacina_bp
 from routes.estabelecimento import estabelecimento_bp
 from routes.estrategia_vacinacao import estrategia_vacinacao_bp
@@ -24,7 +24,7 @@ from routes.via_administracao import via_administracao_bp
 
 app = Flask(__name__)
 
-app.register_blueprint(categoria_vacinacao_bp, url_prefix='/categoria-vacinacao')
+app.register_blueprint(categoria_atendimento_bp, url_prefix='/categoria-atendimento')
 app.register_blueprint(dose_vacina_bp, url_prefix='/dose-vacina')
 app.register_blueprint(estabelecimento_bp, url_prefix='/estabelecimento')
 app.register_blueprint(estrategia_vacinacao_bp, url_prefix='/estrategia-vacinacao')

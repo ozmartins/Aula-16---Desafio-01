@@ -6,7 +6,7 @@ paciente_bp = Blueprint('paciente', __name__)
 @paciente_bp.route('/', methods=['GET'])
 def listar_pacientes():
     pacientes = select('paciente')
-    return jsonify([{'co_paciente': r[0], 'no_paciente': r[1]} for r in pacientes])
+    return jsonify([{'co_paciente': r[0], 'no_paciente': ''} for r in pacientes])
 
 @paciente_bp.route('/', methods=['POST'])
 def criar_paciente():
