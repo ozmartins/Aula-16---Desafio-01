@@ -3,7 +3,7 @@ import sqlite3
 def select(table, conditions=''):
     conn = sqlite3.connect('Dados\\vacinacao.db')
     cursor = conn.cursor() 
-    cursor.execute(f'select * from {table} {conditions}')
+    cursor.execute(f'select * from {table} where fl_removido = \'N\' {conditions}')
     racas = cursor.fetchall()
     conn.close()
     return racas
@@ -15,7 +15,9 @@ def insert(table, data):
     values = ''
     for item in data:
         fields += item + ','
-        if isinstance(data[item], str):
+        if (item == 'fl_removido'):
+            values += '\'N\','
+        elif isinstance(data[item], str):
             values += f'\'{data[item]}\','
         else:
             values += f'{str(data[item])},'
@@ -32,13 +34,13 @@ def update(table, data, conditions):
             fields_and_values += f'{item}=\'{data[item]}\','
         else:
             fields_and_values += f'{item}={data[item]},'
-    cursor.execute(f'update {table} set {fields_and_values[:-1]} {conditions}')
+    cursor.execute(f'update {table} set {fields_and_values[:-1]} where fl_removido = \'N\' {conditions}')
     conn.commit()
     conn.close()
 
 def delete(table, conditions):
     conn = sqlite3.connect('Dados\\vacinacao.db')
     cursor = conn.cursor()     
-    cursor.execute(f'delete from {table} {conditions}')
+    cursor.execute(f'update {table} set fl_removido = \'S\' where fl_removido = \'N\' {conditions}')
     conn.commit()
     conn.close()
