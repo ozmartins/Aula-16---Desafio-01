@@ -1,8 +1,9 @@
 import json
 import sqlite3
+from db_manager import connect
 
-def create_tables(db_path):
-    conn = sqlite3.connect(db_path)
+def create_tables():
+    conn = connect()
     cursor = conn.cursor()
     cursor.executescript('''
         CREATE TABLE IF NOT EXISTS Raca (
@@ -333,8 +334,8 @@ def insert_ViaAdministracao(item, cursor):
                         VALUES (?, ?, ?)''', 
                         ([item['co_via_administracao'], item['ds_via_administracao'], 'N']))
             
-def insert_dataset_into_db(json_data, db_path):
-    conn = sqlite3.connect(db_path)
+def insert_dataset_into_db(json_data):
+    conn = connect()
     cursor = conn.cursor()
     for item in json_data:
         insert_categoria_atendimento(item, cursor)
@@ -360,8 +361,7 @@ def insert_dataset_into_db(json_data, db_path):
     conn.commit()
     conn.close()
 
-def initialize_database():
-    connection_string = 'Dados\\vacinacao.db'
-    create_tables(connection_string)
-    json_file = open_json_file('Dados\\vacinacao_jan_2025.json')    
-    insert_dataset_into_db(json_file, connection_string)
+def initialize_database():    
+    create_tables()
+    json_file = open_json_file('data\\vacinacao_jan_2025.json')    
+    insert_dataset_into_db(json_file)

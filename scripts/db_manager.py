@@ -1,7 +1,10 @@
 import sqlite3
 
+def connect():
+    return sqlite3.connect('data\\vacinacao.db')
+
 def select(table, conditions=''):
-    conn = sqlite3.connect('Dados\\vacinacao.db')
+    conn = connect()
     cursor = conn.cursor() 
     cursor.execute(f'select * from {table} where fl_removido = \'N\' {conditions}')
     racas = cursor.fetchall()
@@ -9,7 +12,7 @@ def select(table, conditions=''):
     return racas
 
 def insert(table, data):
-    conn = sqlite3.connect('Dados\\vacinacao.db')
+    conn = connect()
     cursor = conn.cursor() 
     fields = ''
     values = ''
@@ -26,7 +29,7 @@ def insert(table, data):
     conn.close()
 
 def update(table, data, conditions):
-    conn = sqlite3.connect('Dados\\vacinacao.db')
+    conn = connect()
     cursor = conn.cursor() 
     fields_and_values = ''    
     for item in data:        
@@ -41,7 +44,7 @@ def update(table, data, conditions):
     conn.close()
 
 def delete(table, conditions):
-    conn = sqlite3.connect('Dados\\vacinacao.db')
+    conn = connect()
     cursor = conn.cursor()     
     cursor.execute(f'update {table} set fl_removido = \'S\' where fl_removido = \'N\' {conditions}')
     conn.commit()
