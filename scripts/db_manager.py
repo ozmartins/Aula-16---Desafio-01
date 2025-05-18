@@ -30,7 +30,9 @@ def update(table, data, conditions):
     cursor = conn.cursor() 
     fields_and_values = ''    
     for item in data:        
-        if isinstance(data[item], str):
+        if (item == 'fl_removido'):
+            fields_and_values += f'{item}=\'N\','
+        elif isinstance(data[item], str):
             fields_and_values += f'{item}=\'{data[item]}\','
         else:
             fields_and_values += f'{item}={data[item]},'
