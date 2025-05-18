@@ -85,46 +85,37 @@
     </style>
 </head>
 <script>
-    function remover(id) {
-        alert(`Remover ID: ${id}`);
-        // Aqui você pode fazer fetch DELETE para a API
+    menuAtual = 'racas';
+    function changeMenu(newMenu) {
+        menuAtual = newMenu;
+        listar()
     }
-
-    function editar(id) {
-        alert(`Editar ID: ${id}`);
-        // Aqui você pode abrir um formulário de edição
-    }
-
-    function detalhes(id) {
-        alert(`Detalhes do ID: ${id}`);
-        // Aqui você pode exibir os detalhes em um modal ou nova página
-    }    
 </script>
 
 <body>
     <div class="sidebar">
         <h2>Menu</h2>
         <ul>
-            <li>Raça</li>
-            <li>País</li>
-            <li>Etnia Indígena</li>
-            <li>Tipo Estabelecimento</li>
-            <li>Natureza Estabelecimento</li>
-            <li>Dose Vacina</li>
-            <li>Local Aplicação</li>
-            <li>Via Administração</li>
-            <li>Fabricante</li>
-            <li>Sistema Origem</li>
-            <li>Grupo Atendimento</li>
-            <li>Origem Registro</li>
-            <li>Estrategia Vacinação</li>
-            <li>Categoria Atendimento</li>
-            <li>UF</li>
-            <li>Município</li>
-            <li>Paciente</li>
-            <li>Estabelecimento</li>
-            <li>Vacina</li>
-            <li>Vacinação</li>
+            <li onclick="changeMenu('racas')">Raça</li>
+            <li onclick="changeMenu('paises')">País</li>
+            <li onclick="changeMenu('etnias-indigenas')">Etnia Indígena</li>
+            <li onclick="changeMenu('tipos-estabelecimentos')">Tipo Estabelecimento</li>
+            <li onclick="changeMenu('natureza-estabelecimentos')">Natureza Estabelecimento</li>
+            <li onclick="changeMenu('doses-vacinas')">Dose Vacina</li>
+            <li onclick="changeMenu('locais-aplicacao')">Local Aplicação</li>
+            <li onclick="changeMenu('vias-administracao')">Via Administração</li>
+            <li onclick="changeMenu('fabricantes')">Fabricante</li>
+            <li onclick="changeMenu('sistemas-origem')">Sistema Origem</li>
+            <li onclick="changeMenu('grupos-atendimento')">Grupo Atendimento</li>
+            <li onclick="changeMenu('origens-registro')">Origem Registro</li>
+            <li onclick="changeMenu('estrategia-vacinacao')">Estrategia Vacinação</li>
+            <li onclick="changeMenu('categorias-atendimento')">Categoria Atendimento</li>
+            <li onclick="changeMenu('ufs')">UF</li>
+            <li onclick="changeMenu('municipios')">Município</li>
+            <li onclick="changeMenu('pacientes')">Paciente</li>
+            <li onclick="changeMenu('estabelecimentos')">Estabelecimento</li>
+            <li onclick="changeMenu('vacinas')">Vacina</li>
+            <li onclick="changeMenu('cacinacoes')">Vacinação</li>
         </ul>
     </div>
     <div class="main">
@@ -149,43 +140,27 @@
     </div>
 </body>
 <script>
-    async function listarRacas() {
-        const response = await fetch('http://localhost:5000/racas');
+    async function listar() {
+        const response = await fetch('http://localhost:5000/' + menuAtual);
         const data = await response.json();
         const tbody = document.querySelector('tbody');
         tbody.innerHTML = '';
 
-        data.forEach(raca => {
-            const row = `<tr>
-                    <td>${raca.co_raca_cor}</td>
-                    <td>${raca.no_raca_cor}</td>
-                    <td><button onclick="detalhes(${raca.co_raca_cor})">Detalhes</button></td>
-                    <td><button onclick="editar(${raca.co_raca_cor})">Editar</button></td>
-                    <td><button onclick="remover(${raca.co_raca_cor})">Remover</button></td>                                        
-                    </tr>`;
+        data.forEach(entity => {
+            const row = `<tr>                
+                            <td>${entity[Object.keys(entity)[0]]}</td>
+                            <td>${entity[Object.keys(entity)[1]]}</td>
+                            <td><button>Detalhes</button></td>
+                            <td><button>Editar</button></td>
+                            <td><button>Remover</button></td>
+                        </tr>`;
             tbody.innerHTML += row;
         });
     }
 
-    function remover(id) {
-        alert(`Remover ID: ${id}`);
-        // Aqui você pode fazer fetch DELETE para a API
-    }
+    document.getElementById('btnPesquisar').addEventListener('click', listar);
 
-    function editar(id) {
-        alert(`Editar ID: ${id}`);
-        // Aqui você pode abrir um formulário de edição
-    }
-
-    function detalhes(id) {
-        alert(`Detalhes do ID: ${id}`);
-        // Aqui você pode exibir os detalhes em um modal ou nova página
-    }
-
-
-    document.getElementById('btnPesquisar').addEventListener('click', listarRacas)
-
-    window.onload = listarRacas;
+    window.onload = listar();
 </script>
 
 </html>
