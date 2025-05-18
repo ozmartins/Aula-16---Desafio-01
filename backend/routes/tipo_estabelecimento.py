@@ -1,26 +1,26 @@
 from flask import  request, jsonify, Blueprint
 from scripts.db_manager import insert, update, delete, select
 
-raca_bp = Blueprint('raca', __name__)
+tipo_estabelecimento_bp = Blueprint('tipo-estabelecimento', __name__)
 
-@raca_bp.route('/', methods=['GET'])
-def listar_racas():
-    racas = select('raca')
-    return jsonify([{'co_raca_cor': r[0], 'no_raca_cor': r[1]} for r in racas])
+@tipo_estabelecimento_bp.route('/', methods=['GET'])
+def listar_tipos_estabelecimentos():
+    tipos_estabelecimentos = select('tipoestabelecimento')
+    return jsonify([{'co_tipo_estabelecimento': r[0], 'no_tipo_estabelecimento': r[1]} for r in tipos_estabelecimentos])
 
-@raca_bp.route('/', methods=['POST'])
-def criar_raca():
+@tipo_estabelecimento_bp.route('/', methods=['POST'])
+def criar_tipo_estabelecimento():
     data = request.json
-    insert('raca', data)
-    return jsonify({'mensagem': 'Raça criada com sucesso'}), 201
+    insert('tipoestabelecimento', data)
+    return jsonify({'mensagem': 'Tipo estabelecimento criado com sucesso'}), 201
 
-@raca_bp.route('/', methods=['PUT'])
-def atualizar_raca(id):    
+@tipo_estabelecimento_bp.route('/', methods=['PUT'])
+def atualizar_tipo_estabelecimento(id):    
     data = request.json
-    update('raca', data, f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça atualizada com sucesso'})
+    update('tipoestabelecimento', data, f'and co_tipo_estabelecimento={id}')
+    return jsonify({'mensagem': 'Tipo estabelecimento atualizado com sucesso'})
 
-@raca_bp.route('/', methods=['DELETE'])
-def deletar_raca(id):
-    delete('raca', f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça deletada com sucesso'})
+@tipo_estabelecimento_bp.route('/', methods=['DELETE'])
+def deletar_tipo_estabelecimento(id):
+    delete('tipoestabelecimento', f'and co_tipo_estabelecimento={id}')
+    return jsonify({'mensagem': 'Tipo estabelecimento deletado com sucesso'})

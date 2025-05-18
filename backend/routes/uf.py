@@ -1,26 +1,26 @@
 from flask import  request, jsonify, Blueprint
 from scripts.db_manager import insert, update, delete, select
 
-raca_bp = Blueprint('raca', __name__)
+uf_bp = Blueprint('uf', __name__)
 
-@raca_bp.route('/', methods=['GET'])
-def listar_racas():
-    racas = select('raca')
-    return jsonify([{'co_raca_cor': r[0], 'no_raca_cor': r[1]} for r in racas])
+@uf_bp.route('/', methods=['GET'])
+def listar_ufs():
+    ufs = select('uf')
+    return jsonify([{'co_uf': r[0], 'no_uf': r[1]} for r in ufs])
 
-@raca_bp.route('/', methods=['POST'])
-def criar_raca():
+@uf_bp.route('/', methods=['POST'])
+def criar_uf():
     data = request.json
-    insert('raca', data)
-    return jsonify({'mensagem': 'Raça criada com sucesso'}), 201
+    insert('uf', data)
+    return jsonify({'mensagem': 'UF criada com sucesso'}), 201
 
-@raca_bp.route('/', methods=['PUT'])
-def atualizar_raca(id):    
+@uf_bp.route('/', methods=['PUT'])
+def atualizar_uf(id):    
     data = request.json
-    update('raca', data, f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça atualizada com sucesso'})
+    update('uf', data, f'and co_uf={id}')
+    return jsonify({'mensagem': 'UF atualizada com sucesso'})
 
-@raca_bp.route('/', methods=['DELETE'])
-def deletar_raca(id):
-    delete('raca', f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça deletada com sucesso'})
+@uf_bp.route('/', methods=['DELETE'])
+def deletar_uf(id):
+    delete('uf', f'and co_uf={id}')
+    return jsonify({'mensagem': 'UF deletada com sucesso'})

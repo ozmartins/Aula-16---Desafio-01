@@ -6,7 +6,7 @@ raca_bp = Blueprint('raca', __name__)
 @raca_bp.route('/', methods=['GET'])
 def listar_racas():
     racas = select('raca')
-    return jsonify([{'co_raca_cor': r[0], 'no_raca_cor': r[1]} for r in racas])
+    return jsonify([{'co_raca': r[0], 'no_raca': r[1]} for r in racas])
 
 @raca_bp.route('/', methods=['POST'])
 def criar_raca():
@@ -17,10 +17,10 @@ def criar_raca():
 @raca_bp.route('/', methods=['PUT'])
 def atualizar_raca(id):    
     data = request.json
-    update('raca', data, f'and co_raca_cor={id}')
+    update('raca', data, f'and co_raca={id}')
     return jsonify({'mensagem': 'Raça atualizada com sucesso'})
 
 @raca_bp.route('/', methods=['DELETE'])
 def deletar_raca(id):
-    delete('raca', f'and co_raca_cor={id}')
+    delete('raca', f'and co_raca={id}')
     return jsonify({'mensagem': 'Raça deletada com sucesso'})

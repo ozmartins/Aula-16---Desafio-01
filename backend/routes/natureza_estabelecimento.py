@@ -1,26 +1,26 @@
 from flask import  request, jsonify, Blueprint
 from scripts.db_manager import insert, update, delete, select
 
-raca_bp = Blueprint('raca', __name__)
+natureza_estabelecimento_bp = Blueprint('natureza-estabelecimento', __name__)
 
-@raca_bp.route('/', methods=['GET'])
-def listar_racas():
-    racas = select('raca')
-    return jsonify([{'co_raca_cor': r[0], 'no_raca_cor': r[1]} for r in racas])
+@natureza_estabelecimento_bp.route('/', methods=['GET'])
+def listar_naturezas_estabelecimentos():
+    naturezas_estabelecimentos = select('naturezaestabelecimento')
+    return jsonify([{'co_natureza_estabelecimento': r[0], 'no_natureza_estabelecimento': r[1]} for r in naturezas_estabelecimentos])
 
-@raca_bp.route('/', methods=['POST'])
-def criar_raca():
+@natureza_estabelecimento_bp.route('/', methods=['POST'])
+def criar_natureza_estabelecimento():
     data = request.json
-    insert('raca', data)
-    return jsonify({'mensagem': 'Raça criada com sucesso'}), 201
+    insert('naturezaestabelecimento', data)
+    return jsonify({'mensagem': 'Natureza estabelecimento criada com sucesso'}), 201
 
-@raca_bp.route('/', methods=['PUT'])
-def atualizar_raca(id):    
+@natureza_estabelecimento_bp.route('/', methods=['PUT'])
+def atualizar_natureza_estabelecimento(id):    
     data = request.json
-    update('raca', data, f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça atualizada com sucesso'})
+    update('naturezaestabelecimento', data, f'and co_natureza_estabelecimento={id}')
+    return jsonify({'mensagem': 'Natureza estabelecimento atualizada com sucesso'})
 
-@raca_bp.route('/', methods=['DELETE'])
-def deletar_raca(id):
-    delete('raca', f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça deletada com sucesso'})
+@natureza_estabelecimento_bp.route('/', methods=['DELETE'])
+def deletar_natureza_estabelecimento(id):
+    delete('naturezaestabelecimento', f'and co_natureza_estabelecimento={id}')
+    return jsonify({'mensagem': 'Natureza estabelecimento deletada com sucesso'})

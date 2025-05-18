@@ -1,26 +1,26 @@
 from flask import  request, jsonify, Blueprint
 from scripts.db_manager import insert, update, delete, select
 
-raca_bp = Blueprint('raca', __name__)
+vacina_bp = Blueprint('vacina', __name__)
 
-@raca_bp.route('/', methods=['GET'])
-def listar_racas():
-    racas = select('raca')
-    return jsonify([{'co_raca_cor': r[0], 'no_raca_cor': r[1]} for r in racas])
+@vacina_bp.route('/', methods=['GET'])
+def listar_vacinas():
+    vacinas = select('vacina')
+    return jsonify([{'co_vacina': r[0], 'no_vacina': r[1]} for r in vacinas])
 
-@raca_bp.route('/', methods=['POST'])
-def criar_raca():
+@vacina_bp.route('/', methods=['POST'])
+def criar_vacina():
     data = request.json
-    insert('raca', data)
-    return jsonify({'mensagem': 'Raça criada com sucesso'}), 201
+    insert('vacina', data)
+    return jsonify({'mensagem': 'Vacina criada com sucesso'}), 201
 
-@raca_bp.route('/', methods=['PUT'])
-def atualizar_raca(id):    
+@vacina_bp.route('/', methods=['PUT'])
+def atualizar_vacina(id):    
     data = request.json
-    update('raca', data, f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça atualizada com sucesso'})
+    update('vacina', data, f'and co_vacina={id}')
+    return jsonify({'mensagem': 'Vacina atualizada com sucesso'})
 
-@raca_bp.route('/', methods=['DELETE'])
-def deletar_raca(id):
-    delete('raca', f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça deletada com sucesso'})
+@vacina_bp.route('/', methods=['DELETE'])
+def deletar_vacina(id):
+    delete('vacina', f'and co_vacina={id}')
+    return jsonify({'mensagem': 'Vacina deletada com sucesso'})

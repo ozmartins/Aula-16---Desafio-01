@@ -1,26 +1,26 @@
 from flask import  request, jsonify, Blueprint
 from scripts.db_manager import insert, update, delete, select
 
-raca_bp = Blueprint('raca', __name__)
+sistema_origem_bp = Blueprint('sistema-origem', __name__)
 
-@raca_bp.route('/', methods=['GET'])
-def listar_racas():
-    racas = select('raca')
-    return jsonify([{'co_raca_cor': r[0], 'no_raca_cor': r[1]} for r in racas])
+@sistema_origem_bp.route('/', methods=['GET'])
+def listar_sistemas_origens():
+    sistemas_origem = select('sistemaorigem')
+    return jsonify([{'co_sistema_origem': r[0], 'no_sistema_origem': r[1]} for r in sistemas_origem])
 
-@raca_bp.route('/', methods=['POST'])
-def criar_raca():
+@sistema_origem_bp.route('/', methods=['POST'])
+def criar_sistema_origem():
     data = request.json
-    insert('raca', data)
-    return jsonify({'mensagem': 'Raça criada com sucesso'}), 201
+    insert('sistemaorigem', data)
+    return jsonify({'mensagem': 'Sistema origem criado com sucesso'}), 201
 
-@raca_bp.route('/', methods=['PUT'])
-def atualizar_raca(id):    
+@sistema_origem_bp.route('/', methods=['PUT'])
+def atualizar_sistema_origem(id):    
     data = request.json
-    update('raca', data, f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça atualizada com sucesso'})
+    update('sistemaorigem', data, f'and co_sistema_origem={id}')
+    return jsonify({'mensagem': 'Sistema origem atualizado com sucesso'})
 
-@raca_bp.route('/', methods=['DELETE'])
-def deletar_raca(id):
-    delete('raca', f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça deletada com sucesso'})
+@sistema_origem_bp.route('/', methods=['DELETE'])
+def deletar_sistema_origem(id):
+    delete('sistemaorigem', f'and co_sistema_origem={id}')
+    return jsonify({'mensagem': 'Sistema origem deletado com sucesso'})

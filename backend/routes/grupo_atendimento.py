@@ -1,26 +1,26 @@
 from flask import  request, jsonify, Blueprint
 from scripts.db_manager import insert, update, delete, select
 
-raca_bp = Blueprint('raca', __name__)
+grupo_atendimento_bp = Blueprint('grupo-atendimento', __name__)
 
-@raca_bp.route('/', methods=['GET'])
-def listar_racas():
-    racas = select('raca')
-    return jsonify([{'co_raca_cor': r[0], 'no_raca_cor': r[1]} for r in racas])
+@grupo_atendimento_bp.route('/', methods=['GET'])
+def listar_grupos_atendimentos():
+    grupos_atendimentos = select('grupoatendimento')
+    return jsonify([{'co_grupo_atendimento': r[0], 'no_grupo_atendimento': r[1]} for r in grupos_atendimentos])
 
-@raca_bp.route('/', methods=['POST'])
-def criar_raca():
+@grupo_atendimento_bp.route('/', methods=['POST'])
+def criar_grupo_atendimento():
     data = request.json
-    insert('raca', data)
-    return jsonify({'mensagem': 'Raça criada com sucesso'}), 201
+    insert('grupoatendimento', data)
+    return jsonify({'mensagem': 'Grupo atendimento criado com sucesso'}), 201
 
-@raca_bp.route('/', methods=['PUT'])
-def atualizar_raca(id):    
+@grupo_atendimento_bp.route('/', methods=['PUT'])
+def atualizar_grupo_atendimento(id):    
     data = request.json
-    update('raca', data, f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça atualizada com sucesso'})
+    update('grupoatendimento', data, f'and co_grupo_atendimento={id}')
+    return jsonify({'mensagem': 'Grupo atendimento atualizado com sucesso'})
 
-@raca_bp.route('/', methods=['DELETE'])
-def deletar_raca(id):
-    delete('raca', f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça deletada com sucesso'})
+@grupo_atendimento_bp.route('/', methods=['DELETE'])
+def deletar_grupo_atendimento(id):
+    delete('grupoatendimento', f'and co_grupo_atendimento={id}')
+    return jsonify({'mensagem': 'Grupo atendimento deletado com sucesso'})

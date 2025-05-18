@@ -17,10 +17,10 @@ def criar_etnia_indigena():
 @etnia_indigena_bp.route('/', methods=['PUT'])
 def atualizar_etnia_indigena(id):    
     data = request.json
-    update('etnia_indigena', data, f'and co_etnia_indigena={id}')
+    update('etniaindigena', data, f'and co_etnia_indigena={id}')
     return jsonify({'mensagem': 'Etnia indígena atualizada com sucesso'})
 
 @etnia_indigena_bp.route('/', methods=['DELETE'])
 def deletar_etnia_indigena(id):
-    delete('etnia_indigena', f'and co_etnia_indigena={id}')
+    delete('etniaindigena', f'and co_etnia_indigena={id}')
     return jsonify({'mensagem': 'Etnia indígena deletada com sucesso'})

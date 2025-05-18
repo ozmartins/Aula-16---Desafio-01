@@ -1,26 +1,26 @@
 from flask import  request, jsonify, Blueprint
 from scripts.db_manager import insert, update, delete, select
 
-raca_bp = Blueprint('raca', __name__)
+origem_registro_bp = Blueprint('origem-registro', __name__)
 
-@raca_bp.route('/', methods=['GET'])
-def listar_racas():
-    racas = select('raca')
-    return jsonify([{'co_raca_cor': r[0], 'no_raca_cor': r[1]} for r in racas])
+@origem_registro_bp.route('/', methods=['GET'])
+def listar_origens_registros():
+    origens_registros = select('origemregistro')
+    return jsonify([{'co_origem_registro': r[0], 'no_origem_registro': r[1]} for r in origens_registros])
 
-@raca_bp.route('/', methods=['POST'])
-def criar_raca():
+@origem_registro_bp.route('/', methods=['POST'])
+def criar_origem_registro():
     data = request.json
-    insert('raca', data)
-    return jsonify({'mensagem': 'Raça criada com sucesso'}), 201
+    insert('origemregistro', data)
+    return jsonify({'mensagem': 'Origem do registro criada com sucesso'}), 201
 
-@raca_bp.route('/', methods=['PUT'])
-def atualizar_raca(id):    
+@origem_registro_bp.route('/', methods=['PUT'])
+def atualizar_origem_registro(id):    
     data = request.json
-    update('raca', data, f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça atualizada com sucesso'})
+    update('origemregistro', data, f'and co_origem_registro={id}')
+    return jsonify({'mensagem': 'Origem do registro atualizada com sucesso'})
 
-@raca_bp.route('/', methods=['DELETE'])
-def deletar_raca(id):
-    delete('raca', f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça deletada com sucesso'})
+@origem_registro_bp.route('/', methods=['DELETE'])
+def deletar_origem_registro(id):
+    delete('origemregistro', f'and co_origem_registro={id}')
+    return jsonify({'mensagem': 'Origem do registro deletada com sucesso'})

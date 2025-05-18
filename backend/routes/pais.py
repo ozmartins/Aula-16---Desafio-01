@@ -12,15 +12,15 @@ def listar_paises():
 def criar_pais():
     data = request.json
     insert('pais', data)
-    return jsonify({'mensagem': 'País criada com sucesso'}), 201
+    return jsonify({'mensagem': 'País criado com sucesso'}), 201
 
 @pais_bp.route('/', methods=['PUT'])
 def atualizar_pais(id):    
     data = request.json
     update('pais', data, f'and co_pais={id}')
-    return jsonify({'mensagem': 'País atualizada com sucesso'})
+    return jsonify({'mensagem': 'País atualizado com sucesso'})
 
 @pais_bp.route('/', methods=['DELETE'])
 def deletar_pais(id):
     delete('pais', f'and co_pais={id}')
-    return jsonify({'mensagem': 'País deletada com sucesso'})
+    return jsonify({'mensagem': 'País deletado com sucesso'})

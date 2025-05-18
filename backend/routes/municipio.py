@@ -1,26 +1,26 @@
 from flask import  request, jsonify, Blueprint
 from scripts.db_manager import insert, update, delete, select
 
-raca_bp = Blueprint('raca', __name__)
+municipio_bp = Blueprint('municipio', __name__)
 
-@raca_bp.route('/', methods=['GET'])
-def listar_racas():
-    racas = select('raca')
-    return jsonify([{'co_raca_cor': r[0], 'no_raca_cor': r[1]} for r in racas])
+@municipio_bp.route('/', methods=['GET'])
+def listar_municipios():
+    municipios = select('municipio')
+    return jsonify([{'co_municipio': r[0], 'no_municipio': r[1]} for r in municipios])
 
-@raca_bp.route('/', methods=['POST'])
-def criar_raca():
+@municipio_bp.route('/', methods=['POST'])
+def criar_municipio():
     data = request.json
-    insert('raca', data)
-    return jsonify({'mensagem': 'Raça criada com sucesso'}), 201
+    insert('municipio', data)
+    return jsonify({'mensagem': 'Municipio criado com sucesso'}), 201
 
-@raca_bp.route('/', methods=['PUT'])
-def atualizar_raca(id):    
+@municipio_bp.route('/', methods=['PUT'])
+def atualizar_municipio(id):    
     data = request.json
-    update('raca', data, f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça atualizada com sucesso'})
+    update('municipio', data, f'and co_municipio={id}')
+    return jsonify({'mensagem': 'Municipio atualizado com sucesso'})
 
-@raca_bp.route('/', methods=['DELETE'])
-def deletar_raca(id):
-    delete('raca', f'and co_raca_cor={id}')
-    return jsonify({'mensagem': 'Raça deletada com sucesso'})
+@municipio_bp.route('/', methods=['DELETE'])
+def deletar_municipio(id):
+    delete('municipio', f'and co_municipio={id}')
+    return jsonify({'mensagem': 'Municipio deletado com sucesso'})
