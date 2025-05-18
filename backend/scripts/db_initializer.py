@@ -1,6 +1,5 @@
 import json
-import sqlite3
-from db_manager import connect
+from scripts.db_manager import connect
 
 def create_tables():
     conn = connect()
