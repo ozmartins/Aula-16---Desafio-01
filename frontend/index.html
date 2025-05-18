@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Consulta de Tabelas</title>
     <style>
+        /* styles for the main page */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -83,6 +84,49 @@
         th {
             background-color: #f4f4f4;
         }
+
+        /* Styles for the delete modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            width: 300px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .modal-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .danger {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+        }
+
+        .cancel {
+            background-color: #bdc3c7;
+            border: none;
+        }
     </style>
 </head>
 <script>
@@ -94,6 +138,15 @@
 </script>
 
 <body>
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <p>Confirma a remoção do registro?</p>
+            <div class="modal-buttons">
+                <button class="danger" onclick="confirmDeletion()">Sim, remover</button>
+                <button class="cancel" onclick="closeModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
     <div class="sidebar">
         <h2>Menu</h2>
         <ul>
@@ -121,8 +174,9 @@
     </div>
     <div class="main">
         <div class="search-container">
-            <input type="text" placeholder="Pesquisar">
-            <button id="btnPesquisar">Pesquisar</button>
+            <!-- <input type="text" placeholder="Pesquisar"> -->
+            <!-- <button id="btnPesquisar">Pesquisar</button> -->
+            <button id="btnNovo">Novo</button>
         </div>
         <table>
             <thead>
@@ -153,13 +207,33 @@
                             <td>${entity[Object.keys(entity)[1]]}</td>
                             <td><button>Detalhes</button></td>
                             <td><button>Editar</button></td>
-                            <td><button>Remover</button></td>
+                            <td><button onclick="showModal(${entity[Object.keys(entity)[0]]}, '${menuAtual}')">Remover</button></td>
                         </tr>`;
             tbody.innerHTML += row;
         });
     }
 
-    document.getElementById('btnPesquisar').addEventListener('click', listar);
+    let recordIdToDelete = null;
+    let endpointToDelete = null;
+
+    function showModal(recordId, endpoint) {
+        recordIdToDelete = recordId;
+        endpointToDelete = endpoint;
+        document.getElementById('deleteModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('deleteModal').style.display = 'none';
+        recordIdToDelete = null;
+    }
+
+    function confirmDeletion() {
+        fetch(`http://localhost:5000/${endpointToDelete}/${recordIdToDelete}`, { method: 'DELETE' })
+        closeModal();
+        listar();
+    }
+
+    //document.getElementById('btnPesquisar').addEventListener('click', listar);
 
     window.onload = listar();
 </script>
