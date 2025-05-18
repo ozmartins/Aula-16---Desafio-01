@@ -14,7 +14,7 @@ def criar_fabricante():
     insert('vacinafabricante', data)
     return jsonify({'mensagem': 'Fabricante criado com sucesso'}), 201
 
-@vacina_fabricante_bp.route('/', methods=['PUT'])
+@vacina_fabricante_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_fabricante(id):    
     data = request.json
     update('vacinafabricante', data, f'and co_vacina_fabricante={id}')

@@ -14,7 +14,7 @@ def criar_municipio():
     insert('municipio', data)
     return jsonify({'mensagem': 'Municipio criado com sucesso'}), 201
 
-@municipio_bp.route('/', methods=['PUT'])
+@municipio_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_municipio(id):    
     data = request.json
     update('municipio', data, f'and co_municipio={id}')

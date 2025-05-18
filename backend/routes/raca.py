@@ -14,7 +14,7 @@ def criar_raca():
     insert('raca', data)
     return jsonify({'mensagem': 'Raça criada com sucesso'}), 201
 
-@raca_bp.route('/', methods=['PUT'])
+@raca_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_raca(id):    
     data = request.json
     update('raca', data, f'and co_raca={id}')

@@ -14,7 +14,7 @@ def criar_grupo_atendimento():
     insert('grupoatendimento', data)
     return jsonify({'mensagem': 'Grupo atendimento criado com sucesso'}), 201
 
-@grupo_atendimento_bp.route('/', methods=['PUT'])
+@grupo_atendimento_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_grupo_atendimento(id):    
     data = request.json
     update('grupoatendimento', data, f'and co_vacina_grupo_atendimento={id}')

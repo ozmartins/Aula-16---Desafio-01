@@ -14,7 +14,7 @@ def criar_via_administracao():
     insert('viaadministracao', data)
     return jsonify({'mensagem': 'Via administração criada com sucesso'}), 201
 
-@via_administracao_bp.route('/', methods=['PUT'])
+@via_administracao_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_via_administracao(id):    
     data = request.json
     update('viaadministracao', data, f'and co_via_administracao={id}')

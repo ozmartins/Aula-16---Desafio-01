@@ -14,7 +14,7 @@ def criar_etnia_indigena():
     insert('etniaindigena', data)
     return jsonify({'mensagem': 'Etnia indígena criada com sucesso'}), 201
 
-@etnia_indigena_bp.route('/', methods=['PUT'])
+@etnia_indigena_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_etnia_indigena(id):    
     data = request.json
     update('etniaindigena', data, f'and co_etnia_indigena={id}')

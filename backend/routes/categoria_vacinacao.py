@@ -14,7 +14,7 @@ def criar_categoria_atendimento():
     insert('categoriaatendimento', data)
     return jsonify({'mensagem': 'Categoria criada com sucesso'}), 201
 
-@categoria_atendimento_bp.route('/', methods=['PUT'])
+@categoria_atendimento_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_categoria_atendimento(id):    
     data = request.json
     update('categoriaatendimento', data, f'and co_vacina_categoria_atendimento={id}')

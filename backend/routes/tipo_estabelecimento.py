@@ -14,7 +14,7 @@ def criar_tipo_estabelecimento():
     insert('tipoestabelecimento', data)
     return jsonify({'mensagem': 'Tipo estabelecimento criado com sucesso'}), 201
 
-@tipo_estabelecimento_bp.route('/', methods=['PUT'])
+@tipo_estabelecimento_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_tipo_estabelecimento(id):    
     data = request.json
     update('tipoestabelecimento', data, f'and co_tipo_estabelecimento={id}')

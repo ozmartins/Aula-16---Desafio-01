@@ -14,7 +14,7 @@ def criar_estabelecimento():
     insert('estabelecimento', data)
     return jsonify({'mensagem': 'Estabecimento criado com sucesso'}), 201
 
-@estabelecimento_bp.route('/', methods=['PUT'])
+@estabelecimento_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_estabelecimento(id):    
     data = request.json
     update('estabelecimento', data, f'and co_estabelecimento={id}')

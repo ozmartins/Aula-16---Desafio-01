@@ -14,7 +14,7 @@ def criar_estrategia_vacinacao():
     insert('estrategiavacinacao', data)
     return jsonify({'mensagem': 'Estratégia criada com sucesso'}), 201
 
-@estrategia_vacinacao_bp.route('/', methods=['PUT'])
+@estrategia_vacinacao_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_estrategia_vacinacao(id):    
     data = request.json
     update('estrategiavacinacao', data, f'and co_estrategia_vacinacao={id}')

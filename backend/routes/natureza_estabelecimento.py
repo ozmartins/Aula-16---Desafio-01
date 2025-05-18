@@ -14,7 +14,7 @@ def criar_natureza_estabelecimento():
     insert('naturezaestabelecimento', data)
     return jsonify({'mensagem': 'Natureza estabelecimento criada com sucesso'}), 201
 
-@natureza_estabelecimento_bp.route('/', methods=['PUT'])
+@natureza_estabelecimento_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_natureza_estabelecimento(id):    
     data = request.json
     update('naturezaestabelecimento', data, f'and co_natureza_estabelecimento={id}')

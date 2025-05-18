@@ -14,7 +14,7 @@ def criar_pais():
     insert('pais', data)
     return jsonify({'mensagem': 'País criado com sucesso'}), 201
 
-@pais_bp.route('/', methods=['PUT'])
+@pais_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_pais(id):    
     data = request.json
     update('pais', data, f'and co_pais={id}')

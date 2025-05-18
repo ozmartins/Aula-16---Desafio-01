@@ -14,7 +14,7 @@ def criar_vacina():
     insert('vacina', data)
     return jsonify({'mensagem': 'Vacina criada com sucesso'}), 201
 
-@vacina_bp.route('/', methods=['PUT'])
+@vacina_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_vacina(id):    
     data = request.json
     update('vacina', data, f'and co_vacina={id}')

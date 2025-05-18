@@ -14,7 +14,7 @@ def criar_paciente():
     insert('paciente', data)
     return jsonify({'mensagem': 'Paciente criado com sucesso'}), 201
 
-@paciente_bp.route('/', methods=['PUT'])
+@paciente_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_paciente(id):    
     data = request.json
     update('paciente', data, f'and co_paciente={id}')

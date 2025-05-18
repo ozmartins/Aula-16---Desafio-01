@@ -14,7 +14,7 @@ def criar_local_aplicacao():
     insert('localaplicacao', data)
     return jsonify({'mensagem': 'Local aplicação criado com sucesso'}), 201
 
-@local_aplicacao_bp.route('/', methods=['PUT'])
+@local_aplicacao_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_local_aplicacao(id):    
     data = request.json
     update('localaplicacao', data, f'and co_local_aplicacao={id}')

@@ -14,7 +14,7 @@ def criar_uf():
     insert('uf', data)
     return jsonify({'mensagem': 'UF criada com sucesso'}), 201
 
-@uf_bp.route('/', methods=['PUT'])
+@uf_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_uf(id):    
     data = request.json
     update('uf', data, f'and co_uf={id}')

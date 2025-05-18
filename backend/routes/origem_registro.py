@@ -14,7 +14,7 @@ def criar_origem_registro():
     insert('origemregistro', data)
     return jsonify({'mensagem': 'Origem do registro criada com sucesso'}), 201
 
-@origem_registro_bp.route('/', methods=['PUT'])
+@origem_registro_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_origem_registro(id):    
     data = request.json
     update('origemregistro', data, f'and co_origem_registro={id}')

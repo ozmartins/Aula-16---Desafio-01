@@ -14,7 +14,7 @@ def criar_sistema_origem():
     insert('sistemaorigem', data)
     return jsonify({'mensagem': 'Sistema origem criado com sucesso'}), 201
 
-@sistema_origem_bp.route('/', methods=['PUT'])
+@sistema_origem_bp.route('/', methods=['PUT', 'OPTIONS'])
 def atualizar_sistema_origem(id):    
     data = request.json
     update('sistemaorigem', data, f'and co_sistema_origem={id}')
