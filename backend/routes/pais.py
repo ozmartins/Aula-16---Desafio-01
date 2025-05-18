@@ -20,7 +20,7 @@ def atualizar_pais(id):
     update('pais', data, f'and co_pais={id}')
     return jsonify({'mensagem': 'País atualizado com sucesso'})
 
-@pais_bp.route('/', methods=['DELETE'])
+@pais_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_pais(id):
     delete('pais', f'and co_pais={id}')
     return jsonify({'mensagem': 'País deletado com sucesso'})

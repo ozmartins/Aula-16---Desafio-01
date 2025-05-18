@@ -20,7 +20,7 @@ def atualizar_categoria_atendimento(id):
     update('categoriaatendimento', data, f'and co_vacina_categoria_atendimento={id}')
     return jsonify({'mensagem': 'Categoria atualizada com sucesso'})
 
-@categoria_atendimento_bp.route('/', methods=['DELETE'])
+@categoria_atendimento_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_categoria_atendimento(id):
     delete('categoriaatendimento', f'and co_vacina_categoria_atendimento={id}')
     return jsonify({'mensagem': 'Categoria deletada com sucesso'})

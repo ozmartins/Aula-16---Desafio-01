@@ -20,7 +20,7 @@ def atualizar_local_aplicacao(id):
     update('localaplicacao', data, f'and co_local_aplicacao={id}')
     return jsonify({'mensagem': 'Local aplicação atualizado com sucesso'})
 
-@local_aplicacao_bp.route('/', methods=['DELETE'])
+@local_aplicacao_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_local_aplicacao(id):
     delete('localaplicacao', f'and co_local_aplicacao={id}')
     return jsonify({'mensagem': 'Local aplicação deletado com sucesso'})

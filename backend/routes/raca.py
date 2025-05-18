@@ -20,7 +20,7 @@ def atualizar_raca(id):
     update('raca', data, f'and co_raca={id}')
     return jsonify({'mensagem': 'Raça atualizada com sucesso'})
 
-@raca_bp.route('/', methods=['DELETE'])
+@raca_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_raca(id):
     delete('raca', f'and co_raca={id}')
     return jsonify({'mensagem': 'Raça deletada com sucesso'})

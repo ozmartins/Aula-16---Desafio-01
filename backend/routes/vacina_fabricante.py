@@ -20,7 +20,7 @@ def atualizar_fabricante(id):
     update('vacinafabricante', data, f'and co_vacina_fabricante={id}')
     return jsonify({'mensagem': 'Fabricante atualizado com sucesso'})
 
-@vacina_fabricante_bp.route('/', methods=['DELETE'])
+@vacina_fabricante_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_fabricante(id):
     delete('vacinafabricante', f'and co_vacina_fabricante={id}')
     return jsonify({'mensagem': 'Fabricante deletado com sucesso'})

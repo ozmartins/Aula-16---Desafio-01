@@ -20,7 +20,7 @@ def atualizar_natureza_estabelecimento(id):
     update('naturezaestabelecimento', data, f'and co_natureza_estabelecimento={id}')
     return jsonify({'mensagem': 'Natureza estabelecimento atualizada com sucesso'})
 
-@natureza_estabelecimento_bp.route('/', methods=['DELETE'])
+@natureza_estabelecimento_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_natureza_estabelecimento(id):
     delete('naturezaestabelecimento', f'and co_natureza_estabelecimento={id}')
     return jsonify({'mensagem': 'Natureza estabelecimento deletada com sucesso'})

@@ -20,7 +20,7 @@ def atualizar_uf(id):
     update('uf', data, f'and co_uf={id}')
     return jsonify({'mensagem': 'UF atualizada com sucesso'})
 
-@uf_bp.route('/', methods=['DELETE'])
+@uf_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_uf(id):
     delete('uf', f'and co_uf={id}')
     return jsonify({'mensagem': 'UF deletada com sucesso'})

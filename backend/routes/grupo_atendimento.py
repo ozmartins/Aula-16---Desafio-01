@@ -20,7 +20,7 @@ def atualizar_grupo_atendimento(id):
     update('grupoatendimento', data, f'and co_vacina_grupo_atendimento={id}')
     return jsonify({'mensagem': 'Grupo atendimento atualizado com sucesso'})
 
-@grupo_atendimento_bp.route('/', methods=['DELETE'])
+@grupo_atendimento_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_grupo_atendimento(id):
     delete('grupoatendimento', f'and co_vacina_grupo_atendimento={id}')
     return jsonify({'mensagem': 'Grupo atendimento deletado com sucesso'})

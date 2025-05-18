@@ -20,7 +20,7 @@ def atualizar_sistema_origem(id):
     update('sistemaorigem', data, f'and co_sistema_origem={id}')
     return jsonify({'mensagem': 'Sistema origem atualizado com sucesso'})
 
-@sistema_origem_bp.route('/', methods=['DELETE'])
+@sistema_origem_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_sistema_origem(id):
     delete('sistemaorigem', f'and co_sistema_origem={id}')
     return jsonify({'mensagem': 'Sistema origem deletado com sucesso'})

@@ -20,7 +20,7 @@ def atualizar_estrategia_vacinacao(id):
     update('estrategiavacinacao', data, f'and co_estrategia_vacinacao={id}')
     return jsonify({'mensagem': 'Estratégia atualizada com sucesso'})
 
-@estrategia_vacinacao_bp.route('/', methods=['DELETE'])
+@estrategia_vacinacao_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_estrategia_vacinacao(id):
     delete('estrategiavacinacao', f'and co_estrategia_vacinacao={id}')
     return jsonify({'mensagem': 'Estratégia deletada com sucesso'})

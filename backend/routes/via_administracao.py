@@ -20,7 +20,7 @@ def atualizar_via_administracao(id):
     update('viaadministracao', data, f'and co_via_administracao={id}')
     return jsonify({'mensagem': 'Via administração atualizada com sucesso'})
 
-@via_administracao_bp.route('/', methods=['DELETE'])
+@via_administracao_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_via_administracao(id):
     delete('viaadministracao', f'and co_via_administracao={id}')
     return jsonify({'mensagem': 'Via administração deletada com sucesso'})

@@ -20,7 +20,7 @@ def atualizar_paciente(id):
     update('paciente', data, f'and co_paciente={id}')
     return jsonify({'mensagem': 'Paciente atualizado com sucesso'})
 
-@paciente_bp.route('/', methods=['DELETE'])
+@paciente_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_paciente(id):
     delete('paciente', f'and co_paciente={id}')
     return jsonify({'mensagem': 'Paciente deletado com sucesso'})

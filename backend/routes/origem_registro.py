@@ -20,7 +20,7 @@ def atualizar_origem_registro(id):
     update('origemregistro', data, f'and co_origem_registro={id}')
     return jsonify({'mensagem': 'Origem do registro atualizada com sucesso'})
 
-@origem_registro_bp.route('/', methods=['DELETE'])
+@origem_registro_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_origem_registro(id):
     delete('origemregistro', f'and co_origem_registro={id}')
     return jsonify({'mensagem': 'Origem do registro deletada com sucesso'})

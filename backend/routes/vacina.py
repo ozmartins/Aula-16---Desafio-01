@@ -20,7 +20,7 @@ def atualizar_vacina(id):
     update('vacina', data, f'and co_vacina={id}')
     return jsonify({'mensagem': 'Vacina atualizada com sucesso'})
 
-@vacina_bp.route('/', methods=['DELETE'])
+@vacina_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_vacina(id):
     delete('vacina', f'and co_vacina={id}')
     return jsonify({'mensagem': 'Vacina deletada com sucesso'})

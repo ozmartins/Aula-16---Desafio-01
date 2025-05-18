@@ -20,7 +20,7 @@ def atualizar_municipio(id):
     update('municipio', data, f'and co_municipio={id}')
     return jsonify({'mensagem': 'Municipio atualizado com sucesso'})
 
-@municipio_bp.route('/', methods=['DELETE'])
+@municipio_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_municipio(id):
     delete('municipio', f'and co_municipio={id}')
     return jsonify({'mensagem': 'Municipio deletado com sucesso'})

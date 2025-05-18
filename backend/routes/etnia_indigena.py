@@ -20,7 +20,7 @@ def atualizar_etnia_indigena(id):
     update('etniaindigena', data, f'and co_etnia_indigena={id}')
     return jsonify({'mensagem': 'Etnia indígena atualizada com sucesso'})
 
-@etnia_indigena_bp.route('/', methods=['DELETE'])
+@etnia_indigena_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_etnia_indigena(id):
     delete('etniaindigena', f'and co_etnia_indigena={id}')
     return jsonify({'mensagem': 'Etnia indígena deletada com sucesso'})

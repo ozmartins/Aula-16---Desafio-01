@@ -20,7 +20,7 @@ def atualizar_tipo_estabelecimento(id):
     update('tipoestabelecimento', data, f'and co_tipo_estabelecimento={id}')
     return jsonify({'mensagem': 'Tipo estabelecimento atualizado com sucesso'})
 
-@tipo_estabelecimento_bp.route('/', methods=['DELETE'])
+@tipo_estabelecimento_bp.route('/', methods=['DELETE', 'OPTIONS'])
 def deletar_tipo_estabelecimento(id):
     delete('tipoestabelecimento', f'and co_tipo_estabelecimento={id}')
     return jsonify({'mensagem': 'Tipo estabelecimento deletado com sucesso'})
